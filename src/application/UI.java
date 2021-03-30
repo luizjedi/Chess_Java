@@ -31,6 +31,12 @@ public class UI {
 	public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
 	public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
+	public static void clearScreen() {
+
+		System.out.print("\033[H\033[2J");
+		System.out.flush();
+	}
+
 	public static ChessPosition readChessPosition(Scanner sc) {
 
 		try {
@@ -65,12 +71,10 @@ public class UI {
 			System.out.println(ANSI_RED + "----------------------------------" + ANSI_RESET);
 		}
 
-		System.out.println(ANSI_RED + " |" + ANSI_GREEN + " a" + ANSI_RED +
-				" |" + ANSI_GREEN + " b" + ANSI_RED + " |" + ANSI_GREEN +
-				" c" + ANSI_RED + " |" + ANSI_GREEN + " d" + ANSI_RED + 
-				" |" + ANSI_GREEN + " e" + ANSI_RED + " |" + ANSI_GREEN +
-				" f" + ANSI_RED + " |" + ANSI_GREEN + " g" + ANSI_RED +
-				" |" + ANSI_GREEN + " h" + ANSI_RED + " |" + ANSI_RESET);
+		System.out.println(ANSI_RED + " |" + ANSI_GREEN + " a" + ANSI_RED + " |" + ANSI_GREEN + " b" + ANSI_RED + " |"
+				+ ANSI_GREEN + " c" + ANSI_RED + " |" + ANSI_GREEN + " d" + ANSI_RED + " |" + ANSI_GREEN + " e"
+				+ ANSI_RED + " |" + ANSI_GREEN + " f" + ANSI_RED + " |" + ANSI_GREEN + " g" + ANSI_RED + " |"
+				+ ANSI_GREEN + " h" + ANSI_RED + " |" + ANSI_RESET);
 	}
 
 	private static void printPiece(ChessPiece piece) {
@@ -82,11 +86,11 @@ public class UI {
 		else {
 
 			if (piece.getColor() == Color.WHITE) {
-				System.out.print(ANSI_CYAN + piece + ANSI_RESET + " |");
+				System.out.print(ANSI_CYAN + piece + ANSI_RED + " |" + ANSI_RESET);
 			}
 
 			else {
-				System.out.print(ANSI_YELLOW + piece + ANSI_RESET + " |");
+				System.out.print(ANSI_YELLOW + piece + ANSI_RED + " |" + ANSI_RESET);
 			}
 		}
 		System.out.print(" ");
