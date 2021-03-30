@@ -48,12 +48,12 @@ public class UI {
 	}
 
 	public static void printBoard(ChessPiece[][] pieces) {
-		
+
 		System.out.println();
 
 		for (int i = 0; i < pieces.length; i++) {
 
-			System.out.print((8 - i) + " ");
+			System.out.print(ANSI_GREEN + (8 - i) + ANSI_RED + "| " + ANSI_RESET);
 
 			for (int j = 0; j < pieces.length; j++) {
 
@@ -62,26 +62,31 @@ public class UI {
 			}
 
 			System.out.println();
+			System.out.println(ANSI_RED + "----------------------------------" + ANSI_RESET);
 		}
 
-		System.out.println("  a b c d e f g h");
-
+		System.out.println(ANSI_RED + " |" + ANSI_GREEN + " a" + ANSI_RED +
+				" |" + ANSI_GREEN + " b" + ANSI_RED + " |" + ANSI_GREEN +
+				" c" + ANSI_RED + " |" + ANSI_GREEN + " d" + ANSI_RED + 
+				" |" + ANSI_GREEN + " e" + ANSI_RED + " |" + ANSI_GREEN +
+				" f" + ANSI_RED + " |" + ANSI_GREEN + " g" + ANSI_RED +
+				" |" + ANSI_GREEN + " h" + ANSI_RED + " |" + ANSI_RESET);
 	}
 
 	private static void printPiece(ChessPiece piece) {
 
 		if (piece == null) {
-			System.out.print("*");
+			System.out.print(ANSI_PURPLE + "*" + ANSI_RED + " |");
 		}
 
 		else {
 
 			if (piece.getColor() == Color.WHITE) {
-				System.out.print(ANSI_WHITE + piece + ANSI_RESET);
+				System.out.print(ANSI_CYAN + piece + ANSI_RESET + " |");
 			}
 
 			else {
-				System.out.print(ANSI_YELLOW + piece + ANSI_RESET);
+				System.out.print(ANSI_YELLOW + piece + ANSI_RESET + " |");
 			}
 		}
 		System.out.print(" ");
