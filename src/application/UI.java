@@ -53,6 +53,8 @@ public class UI {
 		}
 	}
 
+	// Fará a impressão do tabuleiro caso não exista movimento possível para 
+	// a peça de origem.
 	public static void printBoard(ChessPiece[][] pieces) {
 
 		System.out.println();
@@ -63,7 +65,33 @@ public class UI {
 
 			for (int j = 0; j < pieces.length; j++) {
 
-				printPiece(pieces[i][j]);
+				printPiece(pieces[i][j], false);
+
+			}
+
+			System.out.println();
+			System.out.println(ANSI_RED + "----------------------------------" + ANSI_RESET);
+		}
+
+		System.out.println(ANSI_RED + " |" + ANSI_GREEN + " a" + ANSI_RED + " |" + ANSI_GREEN + " b" + ANSI_RED + " |"
+				+ ANSI_GREEN + " c" + ANSI_RED + " |" + ANSI_GREEN + " d" + ANSI_RED + " |" + ANSI_GREEN + " e"
+				+ ANSI_RED + " |" + ANSI_GREEN + " f" + ANSI_RED + " |" + ANSI_GREEN + " g" + ANSI_RED + " |"
+				+ ANSI_GREEN + " h" + ANSI_RED + " |" + ANSI_RESET);
+	}
+	
+	// Fará a impressão do tabuleiro trocando a cor de fundo para os 
+	// movimentos possíveis da peça de origem.
+	public static void printBoard(ChessPiece[][] pieces, boolean[][] possibleMoves) {
+
+		System.out.println();
+
+		for (int i = 0; i < pieces.length; i++) {
+
+			System.out.print(ANSI_GREEN + (8 - i) + ANSI_RED + "| " + ANSI_RESET);
+
+			for (int j = 0; j < pieces.length; j++) {
+
+				printPiece(pieces[i][j], possibleMoves[i][j]);
 
 			}
 
@@ -77,20 +105,24 @@ public class UI {
 				+ ANSI_GREEN + " h" + ANSI_RED + " |" + ANSI_RESET);
 	}
 
-	private static void printPiece(ChessPiece piece) {
+	private static void printPiece(ChessPiece piece, boolean background) {
 
+		if(background) {
+			System.out.print(ANSI_BLUE_BACKGROUND);
+		}
+		
 		if (piece == null) {
-			System.out.print(ANSI_PURPLE + "*" + ANSI_RED + " |");
+			System.out.print(ANSI_PURPLE + "*" + ANSI_RESET + ANSI_RED + " |");
 		}
 
 		else {
 
 			if (piece.getColor() == Color.WHITE) {
-				System.out.print(ANSI_CYAN + piece + ANSI_RED + " |" + ANSI_RESET);
+				System.out.print(ANSI_CYAN + piece + ANSI_RESET + ANSI_RED + " |" + ANSI_RESET);
 			}
 
 			else {
-				System.out.print(ANSI_YELLOW + piece + ANSI_RED + " |" + ANSI_RESET);
+				System.out.print(ANSI_YELLOW + piece + ANSI_RESET + ANSI_RED + " |" + ANSI_RESET);
 			}
 		}
 		System.out.print(" ");

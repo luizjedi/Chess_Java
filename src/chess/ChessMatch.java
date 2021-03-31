@@ -30,6 +30,16 @@ public class ChessMatch {
 
 		return mat;
 	}
+	
+	// Depois de inserida a posição de origem esse método irá avaliar todas
+	// posições possíveis para que sejam impressas na tela do usuário.
+	public boolean[][] possibleMoves(ChessPosition sourcePosition) {
+		
+		Position position = sourcePosition.toPosition();
+		validateSourcePosition(position);
+		return board.piece(position).possibleMoves();
+		
+	}
 
 	public ChessPiece perfomChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) {
 
