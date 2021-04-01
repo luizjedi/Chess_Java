@@ -65,6 +65,11 @@ public class UI {
 		System.out.println();
 		System.out.println("Turn : " + chessMatch.getTurn());
 		System.out.println("Waiting player: " + chessMatch.getCurrentPlayer());
+		
+		if (chessMatch.getCheck()) {
+			System.out.println("CHECK!!!");
+		}
+		
 	}
 
 	// Fará a impressão do tabuleiro caso não exista movimento possível para
@@ -75,7 +80,7 @@ public class UI {
 
 		for (int i = 0; i < pieces.length; i++) {
 
-			System.out.print(ANSI_GREEN + (8 - i) + ANSI_RED + "| " + ANSI_RESET);
+			System.out.print(" " + ANSI_GREEN + (8 - i) + ANSI_RED + " | " + ANSI_RESET);
 
 			for (int j = 0; j < pieces.length; j++) {
 
@@ -84,10 +89,10 @@ public class UI {
 			}
 
 			System.out.println();
-			System.out.println(ANSI_RED + "----------------------------------" + ANSI_RESET);
+			System.out.println(ANSI_RED + "------------------------------------" + ANSI_RESET);
 		}
 
-		System.out.println(ANSI_RED + " |" + ANSI_GREEN + " a" + ANSI_RED + " |" + ANSI_GREEN + " b" + ANSI_RED + " |"
+		System.out.println(ANSI_RED + "   |" + ANSI_GREEN + " a" + ANSI_RED + " |" + ANSI_GREEN + " b" + ANSI_RED + " |"
 				+ ANSI_GREEN + " c" + ANSI_RED + " |" + ANSI_GREEN + " d" + ANSI_RED + " |" + ANSI_GREEN + " e"
 				+ ANSI_RED + " |" + ANSI_GREEN + " f" + ANSI_RED + " |" + ANSI_GREEN + " g" + ANSI_RED + " |"
 				+ ANSI_GREEN + " h" + ANSI_RED + " |" + ANSI_RESET);
@@ -101,7 +106,7 @@ public class UI {
 
 		for (int i = 0; i < pieces.length; i++) {
 
-			System.out.print(ANSI_GREEN + (8 - i) + ANSI_RED + " | " + ANSI_RESET);
+			System.out.print(" " + ANSI_GREEN + (8 - i) + ANSI_RED + " | " + ANSI_RESET);
 
 			for (int j = 0; j < pieces.length; j++) {
 
@@ -110,10 +115,10 @@ public class UI {
 			}
 
 			System.out.println();
-			System.out.println(ANSI_RED + "----------------------------------" + ANSI_RESET);
+			System.out.println(ANSI_RED + "------------------------------------" + ANSI_RESET);
 		}
 
-		System.out.println(ANSI_RED + " |" + ANSI_GREEN + " a" + ANSI_RED + " |" + ANSI_GREEN + " b" + ANSI_RED + " |"
+		System.out.println(ANSI_RED + "   |" + ANSI_GREEN + " a" + ANSI_RED + " |" + ANSI_GREEN + " b" + ANSI_RED + " |"
 				+ ANSI_GREEN + " c" + ANSI_RED + " |" + ANSI_GREEN + " d" + ANSI_RED + " |" + ANSI_GREEN + " e"
 				+ ANSI_RED + " |" + ANSI_GREEN + " f" + ANSI_RED + " |" + ANSI_GREEN + " g" + ANSI_RED + " |"
 				+ ANSI_GREEN + " h" + ANSI_RED + " |" + ANSI_RESET);
