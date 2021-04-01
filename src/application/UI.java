@@ -1,7 +1,10 @@
 package application;
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import chess.ChessMatch;
 import chess.ChessPiece;
@@ -53,16 +56,18 @@ public class UI {
 			throw new InputMismatchException("Error reading ChessPosition. Valid values are from a1 to h8.");
 		}
 	}
-	
-	public static void printMatch(ChessMatch chessMatch) {
-		
+
+	public static void printMatch(ChessMatch chessMatch, List<ChessPiece> captured) {
+
 		printBoard(chessMatch.getPieces());
+		System.out.println();
+		printCapturedPieces(captured);
 		System.out.println();
 		System.out.println("Turn : " + chessMatch.getTurn());
 		System.out.println("Waiting player: " + chessMatch.getCurrentPlayer());
 	}
 
-	// Fará a impressão do tabuleiro caso não exista movimento possível para 
+	// Fará a impressão do tabuleiro caso não exista movimento possível para
 	// a peça de origem.
 	public static void printBoard(ChessPiece[][] pieces) {
 
@@ -87,8 +92,8 @@ public class UI {
 				+ ANSI_RED + " |" + ANSI_GREEN + " f" + ANSI_RED + " |" + ANSI_GREEN + " g" + ANSI_RED + " |"
 				+ ANSI_GREEN + " h" + ANSI_RED + " |" + ANSI_RESET);
 	}
-	
-	// Fará a impressão do tabuleiro trocando a cor de fundo para os 
+
+	// Fará a impressão do tabuleiro trocando a cor de fundo para os
 	// movimentos possíveis da peça de origem.
 	public static void printBoard(ChessPiece[][] pieces, boolean[][] possibleMoves) {
 
@@ -96,7 +101,7 @@ public class UI {
 
 		for (int i = 0; i < pieces.length; i++) {
 
-			System.out.print(ANSI_GREEN + (8 - i) + ANSI_RED + "| " + ANSI_RESET);
+			System.out.print(ANSI_GREEN + (8 - i) + ANSI_RED + " | " + ANSI_RESET);
 
 			for (int j = 0; j < pieces.length; j++) {
 
@@ -116,10 +121,10 @@ public class UI {
 
 	private static void printPiece(ChessPiece piece, boolean background) {
 
-		if(background) {
+		if (background) {
 			System.out.print(ANSI_BLUE_BACKGROUND);
 		}
-		
+
 		if (piece == null) {
 			System.out.print(ANSI_PURPLE + "*" + ANSI_RESET + ANSI_RED + " |");
 		}
@@ -136,4 +141,25 @@ public class UI {
 		}
 		System.out.print(" ");
 	}
+
+	private static void printCapturedPieces(List<ChessPiece> captured) {
+
+		// Pega somente as peças capturadas de acordo com suas cores.
+		List<ChessPiece> white = captured.stream().filter(x -> x.getColor() == Color.WHITE)
+				.collect(Collectors.toList());
+		List<ChessPiece> black = captured.stream().filter(x -> x.getColor() == Color.BLACK)
+				.collect(Collectors.toList());
+		System.out.println("Captured pieces:");
+		System.out.print("White: ");
+		System.out.print(ANSI_CYAN);
+		System.out.print(Arrays.toString(white.toArray()));
+		System.out.println(ANSI_RESET);
+
+		System.out.print("Black: ");
+		System.out.print(ANSI_YELLOW);
+		System.out.print(Arrays.toString(black.toArray()));
+		System.out.println(ANSI_RESET);
+
+	}
+
 }
